@@ -1,0 +1,27 @@
+name: Feishu Notify
+
+on:
+  push:
+    branches:
+      - main
+      - "feature/**"
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Feishu notification
+        run: |
+          curl -X POST "$FEISHU_WEBHOOK" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"msg_type\": \"text\",
+              \"content\": {
+                \"text\": \"GitHub 代码有新变更：${GITHUB_REPOSITORY}\n分支：${GITHUB_REF_NAME}\n提交人：${GITHUB_ACTOR}\n查看：https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}\"
+              }
+            }"
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
