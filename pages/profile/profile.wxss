@@ -1,0 +1,162 @@
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  padding: 28rpx;
+  border: 3rpx solid #24342f;
+  border-radius: 28rpx 28rpx 28rpx 58rpx;
+  background: #fffdf6;
+  box-shadow: 8rpx 8rpx 0 rgba(36, 52, 47, 0.14);
+}
+
+.avatar {
+  flex: 0 0 104rpx;
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 52rpx;
+  background: #eadfbf;
+  border: 3rpx solid #24342f;
+}
+
+.profile-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-name {
+  display: block;
+  overflow: hidden;
+  color: #24342f;
+  font-size: 34rpx;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profile-phone {
+  display: block;
+  overflow: hidden;
+  margin-top: 10rpx;
+  color: #6f6a5d;
+  font-size: 24rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 116rpx;
+  min-height: 64rpx;
+  border: 3rpx solid #24342f;
+  border-radius: 18rpx;
+  background: #087e72;
+  color: #ffffff;
+  font-size: 25rpx;
+  font-weight: 700;
+}
+
+.login-btn.ghost {
+  background: #f6c453;
+  color: #24342f;
+}
+
+.booking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.booking-card,
+.adoption-card {
+  display: flex;
+  min-height: 172rpx;
+}
+
+.booking-img,
+.adoption-img {
+  width: 170rpx;
+  min-height: 172rpx;
+  background: #eadfbf;
+}
+
+.booking-body,
+.adoption-body {
+  flex: 1;
+  padding: 22rpx;
+  min-width: 0;
+}
+
+.booking-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.booking-name {
+  overflow: hidden;
+  color: #24342f;
+  font-size: 31rpx;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.booking-time,
+.booking-person {
+  display: block;
+  overflow: hidden;
+  margin-top: 12rpx;
+  color: #6f6a5d;
+  font-size: 25rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18rpx;
+}
+
+.adoption-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.profile-images-scroll {
+  width: 100%;
+  margin-bottom: 14rpx;
+  white-space: nowrap;
+}
+
+.profile-images-row {
+  display: flex;
+  gap: 10rpx;
+}
+
+.profile-thumb {
+  width: 96rpx;
+  height: 96rpx;
+  border: 3rpx solid #24342f;
+  border-radius: 16rpx;
+  background: #eadfbf;
+}
+
+.delete-adoption-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 62rpx;
+  margin-top: 16rpx;
+  padding: 0 20rpx;
+  border: 3rpx solid #24342f;
+  border-radius: 18rpx;
+  background: #ef705b;
+  color: #ffffff;
+  font-size: 24rpx;
+  font-weight: 800;
+}

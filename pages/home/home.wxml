@@ -1,0 +1,63 @@
+<view class="page home-page">
+  <view class="hero">
+    <view class="hero-copy">
+      <text class="eyebrow">天津小动保TAPA</text>
+      <text class="hero-title">给每只小生命一个被看见的机会</text>
+      <text class="hero-desc">发布待领养信息，预约TAPA小狗遛弯，让爱心行动更有秩序。</text>
+      <view class="hero-actions">
+        <button class="primary-btn" bindtap="goPublish">发布领养</button>
+        <button class="secondary-btn" bindtap="goWalk">预约遛狗</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="stats">
+    <view class="stat-item">
+      <text class="stat-num">{{adoptionCount}}</text>
+      <text class="stat-label">待领养</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">{{dogCount}}</text>
+      <text class="stat-label">可预约小狗</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">{{bookingCount}}</text>
+      <text class="stat-label">我的预约</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-head">
+      <text class="section-title">正在寻找家</text>
+      <text class="link" bindtap="goAdopt">查看全部</text>
+    </view>
+    <scroll-view class="pet-scroll" scroll-x enable-flex>
+      <view class="pet-row">
+        <view class="home-pet card" wx:for="{{featuredPets}}" wx:key="id" bindtap="goAdopt">
+          <image class="home-pet-img" src="{{item.cover}}" mode="aspectFill"></image>
+          <view class="home-pet-body">
+            <view class="home-pet-line">
+              <text class="home-pet-name">{{item.name}}</text>
+              <text class="pill">{{item.type}}</text>
+            </view>
+            <text class="home-pet-info">{{item.age}} · {{item.gender}} · {{item.breed}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="section">
+    <view class="section-head">
+      <text class="section-title">本周遛狗</text>
+      <text class="link" bindtap="goWalk">立即预约</text>
+    </view>
+    <view class="walk-preview card">
+      <image class="walk-preview-img" src="{{firstDog.cover}}" mode="aspectFill"></image>
+      <view class="walk-preview-body">
+        <text class="walk-preview-title">{{firstDog.name}} 等你散步</text>
+        <text class="walk-preview-desc">{{firstDog.temperament}}，{{firstDog.note}}</text>
+      </view>
+    </view>
+  </view>
+</view>

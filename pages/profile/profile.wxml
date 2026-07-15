@@ -1,0 +1,69 @@
+<view class="page">
+  <view class="profile-card">
+    <image class="avatar" src="{{user && user.avatar ? user.avatar : defaultAvatar}}" mode="aspectFill"></image>
+    <view class="profile-info">
+      <text class="profile-name">{{user ? user.nickname : '未登录用户'}}</text>
+      <text class="profile-phone">{{user && user.phone ? user.phone : '登录后可管理发布和预约'}}</text>
+    </view>
+    <button wx:if="{{!user}}" class="login-btn" bindtap="goLogin">登录</button>
+    <button wx:else class="login-btn ghost" bindtap="logout">退出</button>
+  </view>
+
+  <view class="section">
+    <view class="section-head">
+      <text class="section-title">我的预约</text>
+      <text class="link" bindtap="goWalk">去预约</text>
+    </view>
+    <view wx:if="{{bookings.length}}" class="booking-list">
+      <view class="booking-card card" wx:for="{{bookings}}" wx:key="id">
+        <image class="booking-img" src="{{item.dogCover}}" mode="aspectFill"></image>
+        <view class="booking-body">
+          <view class="booking-top">
+            <text class="booking-name">{{item.dogName}}</text>
+            <text class="pill">{{item.status}}</text>
+          </view>
+          <text class="booking-time">{{item.date}}  {{item.time}}</text>
+          <text class="booking-person">{{item.visitorName}} · {{item.phone}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="empty">暂无预约记录</view>
+  </view>
+
+  <view class="section">
+    <view class="section-head">
+      <text class="section-title">我发布的领养</text>
+      <text class="link" bindtap="goPublish">去发布</text>
+    </view>
+    <view wx:if="{{myAdoptions.length}}" class="adoption-list">
+      <view class="adoption-card card" wx:for="{{myAdoptions}}" wx:key="id">
+        <image class="adoption-img" src="{{item.cover}}" mode="aspectFill"></image>
+        <view class="adoption-body">
+          <scroll-view wx:if="{{item.images && item.images.length > 1}}" class="profile-images-scroll" scroll-x enable-flex>
+            <view class="profile-images-row">
+              <image class="profile-thumb" wx:for="{{item.images}}" wx:key="*this" src="{{item}}" mode="aspectFill"></image>
+            </view>
+          </scroll-view>
+          <view class="booking-top">
+            <text class="booking-name">{{item.name}}</text>
+            <text class="pill">{{item.status}}</text>
+          </view>
+          <text class="booking-time">{{item.type}} · {{item.breed || '未知品种'}} · {{item.age}} · {{item.gender}}</text>
+          <text class="booking-person">{{item.vaccinated || '疫苗未填写'}} · {{item.recovered || '痊愈情况未填写'}}</text>
+          <button class="delete-adoption-btn" data-id="{{item.id}}" bindtap="deleteAdoption">删除领养信息</button>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="empty">暂无发布的领养信息</view>
+  </view>
+
+  <view class="section">
+    <view class="section-head">
+      <text class="section-title">快捷操作</text>
+    </view>
+    <view class="quick-actions">
+      <button class="secondary-btn" bindtap="goPublish">发布领养</button>
+      <button class="secondary-btn" open-type="contact">联系TAPA</button>
+    </view>
+  </view>
+</view>

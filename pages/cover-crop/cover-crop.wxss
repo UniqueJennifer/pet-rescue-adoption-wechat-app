@@ -1,0 +1,70 @@
+.crop-page {
+  padding-bottom: 64rpx;
+}
+
+.crop-frame {
+  position: relative;
+  overflow: hidden;
+  width: 660rpx;
+  height: 520rpx;
+  margin: 30rpx auto 0;
+  border: 4rpx solid #24342f;
+  border-radius: 28rpx;
+  background: #111;
+  box-shadow: 8rpx 8rpx 0 rgba(36, 52, 47, 0.16);
+}
+
+.crop-image {
+  position: absolute;
+  z-index: 1;
+}
+
+.crop-mask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.crop-mask.top {
+  top: 0;
+  height: 0;
+}
+
+.crop-mask.bottom {
+  bottom: 0;
+  height: 0;
+}
+
+.crop-panel {
+  margin-top: 30rpx;
+  padding: 24rpx;
+  border: 3rpx solid #24342f;
+  border-radius: 24rpx;
+  background: #fffdf6;
+}
+
+.crop-label {
+  display: block;
+  margin-bottom: 12rpx;
+  color: #24342f;
+  font-size: 28rpx;
+  font-weight: 900;
+}
+
+.crop-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18rpx;
+  margin-top: 20rpx;
+}
+
+.crop-canvas {
+  position: fixed;
+  left: -9999rpx;
+  top: -9999rpx;
+  width: 330px;
+  height: 260px;
+}

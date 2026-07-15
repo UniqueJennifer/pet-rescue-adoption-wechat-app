@@ -1,0 +1,90 @@
+<view class="page">
+  <text class="page-title">遛狗预约</text>
+  <text class="page-subtitle">选择TAPA小狗和合适时间，提交后可在本页查看预约记录。</text>
+
+  <view class="notice-card section">
+    <text class="notice-title">预约说明</text>
+    <text class="notice-text">提前一天进行预约，每天13:00-17:00时间段可以预约。</text>
+    <text class="notice-text">每人每天最多一次预约一只狗。</text>
+  </view>
+
+  <view class="section">
+    <view class="section-head">
+      <text class="section-title">选择小狗</text>
+    </view>
+    <scroll-view class="dog-scroll" scroll-x enable-flex>
+      <view class="dog-row">
+        <view class="dog-card {{selectedDogId === item.id ? 'active' : ''}}" wx:for="{{dogs}}" wx:key="id" data-id="{{item.id}}" bindtap="selectDog">
+          <image class="dog-img" src="{{item.cover}}" mode="aspectFill"></image>
+          <view class="dog-body">
+            <text class="dog-name">{{item.name}}</text>
+            <text class="dog-meta">{{item.size}} · {{item.temperament}}</text>
+            <text class="dog-note">{{item.note}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="form-card section">
+    <view class="grid-three">
+      <view class="field">
+        <text class="label">月份</text>
+        <picker range="{{months}}" range-key="label" value="{{monthIndex}}" bindchange="onMonthChange">
+          <view class="picker-box">{{months[monthIndex].label}}</view>
+        </picker>
+      </view>
+      <view class="field">
+        <text class="label">日期</text>
+        <picker range="{{days}}" range-key="label" value="{{dayIndex}}" bindchange="onDayChange">
+          <view class="picker-box">{{days[dayIndex].label}}</view>
+        </picker>
+      </view>
+      <view class="field">
+        <text class="label">预约时间</text>
+        <picker range="{{times}}" value="{{timeIndex}}" bindchange="onTimeChange">
+          <view class="picker-box">{{times[timeIndex]}}</view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="field">
+      <text class="label">遛狗地点</text>
+      <view class="info-box">{{location}}</view>
+    </view>
+    <view class="field">
+      <text class="label">遛狗联系</text>
+      <view class="info-box">遛狗联系：{{shelterPhone}}</view>
+    </view>
+    <view class="field">
+      <text class="label">预约人</text>
+      <input class="input" placeholder-class="placeholder" placeholder="请输入姓名" value="{{visitorName}}" bindinput="onNameInput" />
+    </view>
+    <view class="field">
+      <text class="label">手机号</text>
+      <input class="input" type="number" maxlength="11" placeholder-class="placeholder" placeholder="用于TAPA联系确认" value="{{phone}}" bindinput="onPhoneInput" />
+    </view>
+    <button class="primary-btn" bindtap="submit">提交预约</button>
+  </view>
+
+  <view class="section">
+    <view class="section-head">
+      <text class="section-title">预约记录</text>
+    </view>
+    <view wx:if="{{bookings.length}}" class="booking-list">
+      <view class="booking-card card" wx:for="{{bookings}}" wx:key="id">
+        <image class="booking-img" src="{{item.dogCover}}" mode="aspectFill"></image>
+        <view class="booking-body">
+          <view class="booking-top">
+            <text class="booking-name">{{item.dogName}}</text>
+            <text class="pill">{{item.status}}</text>
+          </view>
+          <text class="booking-line">{{item.dateLabel || item.date}}  {{item.time}}</text>
+          <text class="booking-line">{{item.location || location}}</text>
+          <text class="booking-line">{{item.visitorName}} · {{item.phone}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="empty">暂无预约记录</view>
+  </view>
+</view>

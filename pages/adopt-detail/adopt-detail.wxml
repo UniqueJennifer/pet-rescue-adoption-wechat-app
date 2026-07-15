@@ -1,0 +1,56 @@
+<view class="page">
+  <view wx:if="{{pet}}">
+    <swiper
+      class="detail-swiper"
+      indicator-dots="{{images.length > 1}}"
+      indicator-color="rgba(255, 253, 246, 0.72)"
+      indicator-active-color="#087e72"
+      circular="{{images.length > 1}}"
+    >
+      <swiper-item wx:for="{{images}}" wx:key="*this">
+        <image
+          class="detail-image"
+          src="{{item}}"
+          mode="aspectFill"
+          data-url="{{item}}"
+          bindtap="previewImage"
+        ></image>
+      </swiper-item>
+    </swiper>
+
+    <view class="detail-card">
+      <view class="detail-head">
+        <view>
+          <text class="detail-name">{{pet.name}}</text>
+          <text class="detail-meta">{{pet.type}} · {{pet.breed || '未知品种'}} · {{pet.age}} · {{pet.gender}}</text>
+        </view>
+        <text class="pill">{{pet.status}}</text>
+      </view>
+      <text class="detail-owner">发布者：{{pet.ownerName || '爱心用户'}}</text>
+    </view>
+
+    <view class="detail-card">
+      <text class="detail-section-title">健康信息</text>
+      <view class="info-row">
+        <text class="info-label">疾病历史</text>
+        <text class="info-value">{{pet.diseaseHistory || '未填写'}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">是否痊愈</text>
+        <text class="info-value">{{pet.recovered || '未填写'}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">疫苗</text>
+        <text class="info-value">{{pet.vaccinated || '未填写'}}</text>
+      </view>
+    </view>
+
+    <view class="detail-card">
+      <text class="detail-section-title">情况简介</text>
+      <text class="detail-intro">{{pet.intro}}</text>
+    </view>
+
+    <button class="primary-btn contact-detail-btn" bindtap="showContact">联系领养</button>
+  </view>
+  <view wx:else class="empty">正在加载领养信息</view>
+</view>

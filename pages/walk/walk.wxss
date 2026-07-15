@@ -1,0 +1,160 @@
+.notice-card {
+  padding: 26rpx;
+  border: 3rpx solid #24342f;
+  border-radius: 24rpx 24rpx 56rpx 24rpx;
+  background: #fffdf6;
+  box-shadow: 8rpx 8rpx 0 rgba(36, 52, 47, 0.14);
+}
+
+.notice-title {
+  display: block;
+  color: #24342f;
+  font-size: 32rpx;
+  font-weight: 800;
+}
+
+.notice-text {
+  display: block;
+  margin-top: 12rpx;
+  color: #466f4d;
+  font-size: 25rpx;
+  line-height: 1.5;
+}
+
+.dog-scroll {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.dog-row {
+  display: flex;
+  gap: 20rpx;
+}
+
+.dog-card {
+  flex: 0 0 310rpx;
+  width: 310rpx;
+  overflow: hidden;
+  display: inline-block;
+  margin-right: 20rpx;
+  border: 3rpx solid #24342f;
+  border-radius: 22rpx;
+  background: #fffdf6;
+  vertical-align: top;
+  box-shadow: 6rpx 6rpx 0 rgba(36, 52, 47, 0.12);
+}
+
+.dog-card.active {
+  background: #e8f3df;
+  border-color: #087e72;
+}
+
+.dog-img {
+  display: block;
+  width: 100%;
+  height: 230rpx;
+  background: #eadfbf;
+}
+
+.dog-body {
+  padding: 20rpx;
+}
+
+.dog-name {
+  display: block;
+  color: #24342f;
+  font-size: 32rpx;
+  font-weight: 800;
+}
+
+.dog-meta,
+.dog-note {
+  display: block;
+  overflow: hidden;
+  margin-top: 10rpx;
+  color: #6f6a5d;
+  font-size: 24rpx;
+  line-height: 1.45;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dog-note {
+  color: #466f4d;
+}
+
+.grid-three {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.35fr;
+  gap: 14rpx;
+}
+
+.grid-three .picker-box {
+  min-height: 84rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  font-size: 25rpx;
+  text-align: center;
+}
+
+.info-box {
+  width: 100%;
+  min-height: 88rpx;
+  padding: 24rpx;
+  border: 3rpx solid #ded4b4;
+  border-radius: 18rpx;
+  background: #fff8e8;
+  color: #24342f;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.booking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.booking-card {
+  display: flex;
+  min-height: 188rpx;
+}
+
+.booking-img {
+  width: 176rpx;
+  min-height: 188rpx;
+  background: #eadfbf;
+}
+
+.booking-body {
+  flex: 1;
+  min-width: 0;
+  padding: 22rpx;
+}
+
+.booking-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.booking-name {
+  overflow: hidden;
+  color: #24342f;
+  font-size: 31rpx;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.booking-line {
+  display: block;
+  overflow: hidden;
+  margin-top: 10rpx;
+  color: #6f6a5d;
+  font-size: 24rpx;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

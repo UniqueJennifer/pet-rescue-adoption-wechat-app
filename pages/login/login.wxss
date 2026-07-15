@@ -1,0 +1,58 @@
+.login-page {
+  padding-top: 42rpx;
+}
+
+.login-hero {
+  padding: 14rpx 2rpx 8rpx;
+}
+
+.mode-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12rpx;
+  margin-top: 30rpx;
+  padding: 8rpx;
+  border: 3rpx solid #24342f;
+  border-radius: 20rpx;
+  background: #fff8e8;
+}
+
+.mode-tab {
+  min-height: 72rpx;
+  border-radius: 16rpx;
+  color: #6f6a5d;
+  text-align: center;
+  font-size: 26rpx;
+  font-weight: 800;
+  line-height: 72rpx;
+}
+
+.mode-tab.active {
+  background: #f6c453;
+  color: #24342f;
+  box-shadow: 4rpx 4rpx 0 rgba(36, 52, 47, 0.12);
+}
+
+.wechat-avatar {
+  display: flex;
+  overflow: hidden;
+  width: 140rpx;
+  height: 140rpx;
+  align-items: center;
+  justify-content: center;
+  margin: 4rpx auto 28rpx;
+  border-radius: 70rpx;
+  border: 3rpx solid #24342f;
+  background: #fff8e8;
+  color: #6f6a5d;
+  font-size: 24rpx;
+}
+
+.wechat-avatar-img {
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.wechat-avatar-text {
+  font-size: 24rpx;
+}

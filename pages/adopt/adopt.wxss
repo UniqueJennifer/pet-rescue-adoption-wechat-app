@@ -1,0 +1,92 @@
+.adopt-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24rpx;
+}
+
+.publish-mini {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 128rpx;
+  min-height: 68rpx;
+  border: 3rpx solid #24342f;
+  border-radius: 18rpx;
+  background: #087e72;
+  color: #ffffff;
+  font-size: 26rpx;
+  font-weight: 800;
+  box-shadow: 5rpx 5rpx 0 rgba(36, 52, 47, 0.16);
+}
+
+.filters {
+  display: flex;
+  gap: 14rpx;
+  margin-top: 28rpx;
+}
+
+.filter {
+  min-width: 116rpx;
+  padding: 18rpx 24rpx;
+  border: 3rpx solid #24342f;
+  border-radius: 999rpx;
+  background: #fffdf6;
+  color: #6f6a5d;
+  text-align: center;
+  font-size: 25rpx;
+  font-weight: 700;
+}
+
+.filter.active {
+  background: #f6c453;
+  color: #24342f;
+}
+
+.filter:nth-child(2).active {
+  background: #ef705b;
+  color: #ffffff;
+}
+
+.filter:nth-child(3).active {
+  background: #087e72;
+  color: #ffffff;
+}
+
+.pet-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22rpx;
+  margin-top: 28rpx;
+}
+
+.pet-card {
+  overflow: hidden;
+  border: 3rpx solid #24342f;
+  border-radius: 24rpx;
+  background: #fffdf6;
+  box-shadow: 6rpx 6rpx 0 rgba(36, 52, 47, 0.13);
+}
+
+.pet-img {
+  display: block;
+  width: 100%;
+  height: 250rpx;
+  background: #eadfbf;
+}
+
+.pet-body {
+  padding: 18rpx 18rpx 20rpx;
+}
+
+.pet-name {
+  display: block;
+  overflow: hidden;
+  color: #24342f;
+  font-size: 30rpx;
+  line-height: 1.2;
+  font-weight: 900;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
