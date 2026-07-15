@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/adopt/adopt",
+    "pages/adopt-detail/adopt-detail",
+    "pages/publish/publish",
+    "pages/cover-crop/cover-crop",
+    "pages/walk/walk",
+    "pages/profile/profile",
+    "pages/login/login"
+  ],
+  "window": {
+    "navigationBarTitleText": "天津小动保TAPA",
+    "navigationBarBackgroundColor": "#F7F2DE",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F7F2DE",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#6F6A5D",
+    "selectedColor": "#087E72",
+    "backgroundColor": "#FFFDF6",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/adopt/adopt",
+        "text": "领养"
+      },
+      {
+        "pagePath": "pages/walk/walk",
+        "text": "遛狗"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

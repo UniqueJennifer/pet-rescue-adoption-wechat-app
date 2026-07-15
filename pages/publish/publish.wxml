@@ -1,0 +1,103 @@
+<view class="page">
+  <text class="page-title">发布领养信息</text>
+  <text class="page-subtitle">上传照片、填写基本情况和联系方式，方便有意向的领养人联系你。</text>
+
+  <view class="form-card section">
+    <view class="field">
+      <view class="field-header">
+        <text class="label">照片（最多9张，可选择原图）</text>
+        <view class="checkbox-item inline {{form.isBase ? 'checked' : ''}}" bindtap="toggleBase">
+          <view class="checkbox">
+            <text wx:if="{{form.isBase}}">✓</text>
+          </view>
+          <text class="checkbox-label">基地</text>
+        </view>
+      </view>
+      <view wx:if="{{form.isBase}}" class="field">
+        <text class="label">是否可遛狗</text>
+        <view class="checkbox-item inline {{form.canWalk ? 'checked' : ''}}" bindtap="toggleCanWalk">
+          <view class="checkbox">
+            <text wx:if="{{form.canWalk}}">✓</text>
+          </view>
+          <text class="checkbox-label">可遛狗</text>
+        </view>
+      </view>
+      <view class="photo-grid">
+        <view class="photo-item" wx:for="{{form.images}}" wx:key="*this">
+          <image class="photo-preview" src="{{item}}" mode="aspectFill" data-url="{{item}}" bindtap="previewImage"></image>
+          <button class="photo-remove" data-index="{{index}}" bindtap="removeImage">×</button>
+          <button class="photo-crop-btn" data-url="{{item}}" bindtap="cropCover">裁剪封面</button>
+        </view>
+        <view wx:if="{{form.images.length < 9}}" class="photo-picker" bindtap="chooseImage">
+          <text class="photo-plus">+</text>
+          <text class="photo-tip">添加照片</text>
+        </view>
+      </view>
+      <view wx:if="{{form.cover}}" class="cover-crop-card">
+        <text class="cover-crop-title">领养列表展示裁剪预览</text>
+        <image class="cover-crop-preview" src="{{form.cover}}" mode="aspectFill" data-url="{{form.cover}}" bindtap="previewImage"></image>
+        <text class="cover-crop-tip">点击照片上的“裁剪封面”可拖动选择想展示的部分；详情页仍保留原始照片。</text>
+      </view>
+    </view>
+
+    <view class="field">
+      <text class="label">名字</text>
+      <input class="input" placeholder-class="placeholder" placeholder="例如 糯米" value="{{form.name}}" data-key="name" bindinput="onInput" />
+    </view>
+
+    <view class="field">
+      <text class="label">品种</text>
+      <input class="input" placeholder-class="placeholder" placeholder="例如 中华田园猫 / 金毛 / 混血犬" value="{{form.breed}}" data-key="breed" bindinput="onInput" />
+    </view>
+
+    <view class="grid-two">
+      <view class="field">
+        <text class="label">类型</text>
+        <custom-dropdown options="{{typeOptions}}" selected-index="{{typeIndex}}" bind:change="onTypeChange" />
+      </view>
+      <view class="field">
+        <text class="label">公母</text>
+        <custom-dropdown options="{{genderOptions}}" selected-index="{{genderIndex}}" bind:change="onGenderChange" />
+      </view>
+    </view>
+
+    <view class="field">
+      <text class="label">年龄</text>
+      <input class="input" placeholder-class="placeholder" placeholder="例如 8个月 / 2岁" value="{{form.age}}" data-key="age" bindinput="onInput" />
+    </view>
+
+    <view class="grid-two">
+      <view class="field">
+        <text class="label">健康状况</text>
+        <custom-dropdown options="{{healthStatusOptions}}" selected-index="{{healthStatusIndex}}" bind:change="onHealthStatusChange" />
+      </view>
+      <view class="field">
+        <text class="label">接种疫苗</text>
+        <custom-dropdown options="{{vaccinatedOptions}}" selected-index="{{vaccinatedIndex}}" bind:change="onVaccinatedChange" />
+      </view>
+    </view>
+
+    <view wx:if="{{form.healthStatus === '治疗中' || form.healthStatus === '生病中'}}" class="field">
+      <text class="label">疾病信息</text>
+      <textarea class="textarea short-textarea" placeholder-class="placeholder" placeholder="请详细描述宠物的疾病情况、治疗方案等" value="{{form.diseaseInfo}}" data-key="diseaseInfo" bindinput="onInput" maxlength="180"></textarea>
+    </view>
+
+    <view class="field">
+      <text class="label">位置信息</text>
+      <button class="location-btn" bindtap="chooseLocation">📍 选择位置</button>
+      <input class="input" placeholder-class="placeholder" placeholder="点击上方按钮选择位置，或手动输入地址" value="{{form.locationInfo}}" data-key="locationInfo" bindinput="onInput" />
+    </view>
+
+    <view class="field">
+      <text class="label">情况简介</text>
+      <textarea class="textarea" placeholder-class="placeholder" placeholder="说明性格、日常习惯、是否绝育、领养要求等" value="{{form.intro}}" data-key="intro" bindinput="onInput" maxlength="300"></textarea>
+    </view>
+
+    <view class="field">
+      <text class="label">领养联系方式</text>
+      <input class="input" type="text" placeholder-class="placeholder" placeholder="手机号、微信号、邮箱或其他联系方式" value="{{form.contact}}" data-key="contact" bindinput="onInput" />
+    </view>
+
+    <button class="primary-btn submit-btn" bindtap="submit">提交发布</button>
+  </view>
+</view>

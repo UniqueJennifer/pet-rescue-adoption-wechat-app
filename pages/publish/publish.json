@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "发布领养",
+  "usingComponents": {
+    "custom-dropdown": "../../components/custom-dropdown/custom-dropdown"
+  }
+}

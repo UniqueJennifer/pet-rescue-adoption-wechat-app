@@ -1,0 +1,10 @@
+node_modules/
+.DS_Store
+*.log
+miniprogram_npm/
+.idea/
+.vscode/
+*.swp
+*.swo
+Thumbs.db
+.cache/

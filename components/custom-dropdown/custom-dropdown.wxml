@@ -1,0 +1,17 @@
+<view class="custom-dropdown">
+  <view class="dropdown-trigger" bindtap="toggleOptions">
+    <text class="dropdown-text">{{options[selectedIndex] || placeholder}}</text>
+    <text class="dropdown-icon">{{showOptions ? '▲' : '▼'}}</text>
+  </view>
+  <view class="dropdown-options" wx:if="{{showOptions}}">
+    <view
+      class="dropdown-option {{selectedIndex === index ? 'selected' : ''}}"
+      wx:for="{{options}}"
+      wx:key="*this"
+      data-index="{{index}}"
+      bindtap="selectOption"
+    >
+      {{item}}
+    </view>
+  </view>
+</view>

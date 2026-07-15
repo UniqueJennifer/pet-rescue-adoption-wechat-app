@@ -1,0 +1,28 @@
+<view class="page crop-page">
+  <text class="page-title">裁剪展示封面</text>
+  <text class="page-subtitle">拖动图片选择展示区域，调整缩放后保存为领养列表封面。</text>
+
+  <view class="crop-frame">
+    <image
+      class="crop-image"
+      src="{{image}}"
+      mode="aspectFit"
+      style="width: {{imageWidth}}px; height: {{imageHeight}}px; left: {{imageLeft}}px; top: {{imageTop}}px;"
+      bindtouchstart="onTouchStart"
+      bindtouchmove="onTouchMove"
+    ></image>
+    <view class="crop-mask top"></view>
+    <view class="crop-mask bottom"></view>
+  </view>
+
+  <view class="crop-panel">
+    <text class="crop-label">缩放</text>
+    <slider min="1" max="3" step="0.05" value="{{scale}}" activeColor="#087e72" backgroundColor="#ded4b4" block-color="#f6c453" bindchange="onScaleChange" />
+    <view class="crop-actions">
+      <button class="secondary-btn" bindtap="resetCrop">重置</button>
+      <button class="primary-btn" bindtap="saveCrop">保存封面</button>
+    </view>
+  </view>
+
+  <canvas class="crop-canvas" canvas-id="coverCropCanvas" style="width: 990px; height: 780px;"></canvas>
+</view>

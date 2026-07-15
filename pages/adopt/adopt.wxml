@@ -1,0 +1,51 @@
+<view class="page">
+  <view class="adopt-head">
+    <view>
+      <text class="page-title">猫狗领养</text>
+      <text class="page-subtitle">浏览待领养的小猫小狗，也可以发布身边需要找家的动物信息。</text>
+    </view>
+    <button class="publish-mini" bindtap="goPublish">发布</button>
+  </view>
+
+  <view wx:if="{{!showList}}" class="category-section">
+    <view class="category-card cat-card" bindtap="selectCategory" data-type="猫咪">
+      <image class="category-img" src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80" mode="aspectFill"></image>
+      <view class="category-body">
+        <text class="category-title">猫猫</text>
+        <text class="category-count">{{catCount}} 只待领养</text>
+      </view>
+      <view class="category-arrow">→</view>
+    </view>
+
+    <view class="category-card dog-card" bindtap="selectCategory" data-type="狗狗">
+      <image class="category-img" src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&w=600&q=80" mode="aspectFill"></image>
+      <view class="category-body">
+        <text class="category-title">狗狗</text>
+        <text class="category-count">{{dogCount}} 只待领养</text>
+      </view>
+      <view class="category-arrow">→</view>
+    </view>
+  </view>
+
+  <view wx:else class="list-section">
+    <view class="back-bar">
+      <text class="back-btn" bindtap="goBack">← 返回分类</text>
+      <text class="current-category">{{selectedCategory}}</text>
+    </view>
+
+    <view class="pet-list" wx:if="{{pets.length}}">
+      <view class="pet-card card" wx:for="{{pets}}" wx:key="id" data-id="{{item.id || item._id}}" bindtap="goDetail">
+        <image class="pet-img" src="{{item.cover}}" mode="aspectFill"></image>
+        <view class="pet-body">
+          <view class="pet-name-row">
+            <text class="pet-name">{{item.name}}</text>
+            <text wx:if="{{item.isBase}}" class="base-tag">（基地）</text>
+          </view>
+          <text class="pet-meta">{{item.breed || '未知品种'}} · {{item.age}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty" wx:else>暂无{{selectedCategory}}领养信息</view>
+  </view>
+</view>
