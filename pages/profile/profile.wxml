@@ -16,13 +16,11 @@
     </view>
     <view wx:if="{{myAdoptions.length}}" class="adoption-list">
       <view class="adoption-card card" wx:for="{{myAdoptions}}" wx:key="id">
-        <image class="adoption-img" src="{{item.cover}}" mode="aspectFill"></image>
+        <view class="card-image-wrap">
+          <image class="adoption-img" src="{{item.cover}}" mode="aspectFill"></image>
+          <text wx:if="{{item.images && item.images.length > 1}}" class="photo-count">{{item.images.length}}张</text>
+        </view>
         <view class="adoption-body">
-          <scroll-view wx:if="{{item.images && item.images.length > 1}}" class="profile-images-scroll" scroll-x enable-flex>
-            <view class="profile-images-row">
-              <image class="profile-thumb" wx:for="{{item.images}}" wx:key="*this" src="{{item}}" mode="aspectFill"></image>
-            </view>
-          </scroll-view>
           <view class="booking-top">
             <text class="booking-name">{{item.name}}</text>
             <text class="pill">{{item.status}}</text>
@@ -44,7 +42,9 @@
     </view>
     <view wx:if="{{bookings.length}}" class="booking-list">
       <view class="booking-card card" wx:for="{{bookings}}" wx:key="id">
-        <image class="booking-img" src="{{item.dogCover}}" mode="aspectFill"></image>
+        <view class="card-image-wrap">
+          <image class="booking-img" src="{{item.dogCover}}" mode="aspectFill"></image>
+        </view>
         <view class="booking-body">
           <view class="booking-top">
             <text class="booking-name">{{item.dogName}}</text>
