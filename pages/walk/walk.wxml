@@ -14,7 +14,8 @@
     </view>
     <scroll-view class="dog-scroll" scroll-x enable-flex>
       <view class="dog-row">
-        <view class="dog-card {{selectedDogId === item.id ? 'active' : ''}}" wx:for="{{dogs}}" wx:key="id" data-id="{{item.id}}" bindtap="selectDog" hover-class="tap-card-active">
+        <view class="dog-card {{selectedDogId === item.id ? 'active' : ''}}" wx:for="{{dogs}}" wx:key="id" data-id="{{item.id}}" bindtap="selectDog" hover-class="tap-card-active" aria-selected="{{selectedDogId === item.id}}">
+          <view wx:if="{{selectedDogId === item.id}}" class="selected-dog-badge">✓ 已选择</view>
           <image class="dog-img" src="{{item.cover}}" mode="aspectFill"></image>
           <view class="dog-body">
             <text class="dog-name">{{item.name}}</text>

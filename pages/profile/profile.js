@@ -14,7 +14,7 @@ Page({
     defaultAvatar: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=300&q=80'
   },
   async onShow() {
-    syncTabBar(this, 3)
+    syncTabBar(this, 2)
     const user = store.getUser()
     const results = await Promise.all([
       store.getBookingsForUser(user && user.id),

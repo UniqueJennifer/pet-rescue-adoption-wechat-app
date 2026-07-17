@@ -5,8 +5,8 @@
       <text class="hero-title">给每只小生命一个被看见的机会</text>
       <text class="hero-desc">发布待领养信息，预约TAPA小狗遛弯，让爱心行动更有秩序。</text>
       <view class="hero-actions">
-        <button class="primary-btn" bindtap="goPublish">发布领养</button>
-        <button class="secondary-btn" bindtap="goWalk">预约遛狗</button>
+        <button class="primary-btn hero-action-btn hero-publish-btn" bindtap="goPublish">发布领养</button>
+        <button class="secondary-btn hero-action-btn hero-location-btn" bindtap="showBaseAddress">导航基地</button>
       </view>
     </view>
   </view>
@@ -29,15 +29,19 @@
   <view class="section">
     <view class="section-head">
       <text class="section-title">正在寻找家</text>
-      <text class="link" data-type="全部" data-scope="nonBase" data-title="正在寻找家" bindtap="goAdoptList">查看全部</text>
+      <view class="link section-action" data-type="全部" data-scope="nonBase" data-title="正在寻找家" bindtap="goAdoptList" hover-class="section-action-active">
+        <text>查看全部</text><text class="section-action-arrow">→</text>
+      </view>
     </view>
     <scroll-view class="pet-scroll" scroll-x enable-flex>
       <view class="pet-row">
-        <view class="home-pet card" wx:for="{{featuredPets}}" wx:key="id" data-type="{{item.type}}" data-scope="nonBase" data-title="{{item.type}}待领养" bindtap="goAdoptList" hover-class="tap-card-active">
+        <view class="home-pet card" wx:for="{{featuredPets}}" wx:key="id" data-id="{{item.id || item._id}}" bindtap="goAdoptDetail" hover-class="tap-card-active">
           <image class="home-pet-img" src="{{item.cover}}" mode="aspectFill"></image>
           <view class="home-pet-body">
             <view class="home-pet-line">
               <text class="home-pet-name">{{item.name}}</text>
+            </view>
+            <view class="home-pet-tags">
               <text class="pill">{{item.type}}</text>
             </view>
             <text class="home-pet-info">{{item.age}} · {{item.gender}} · {{item.breed}}</text>
@@ -50,15 +54,19 @@
   <view wx:if="{{basePets.length > 0}}" class="section">
     <view class="section-head">
       <text class="section-title">基地的宝宝们</text>
-      <text class="link" data-type="全部" data-scope="base" data-title="基地待领养" bindtap="goAdoptList">查看全部</text>
+      <view class="link section-action" data-type="全部" data-scope="base" data-title="基地待领养" bindtap="goAdoptList" hover-class="section-action-active">
+        <text>查看全部</text><text class="section-action-arrow">→</text>
+      </view>
     </view>
     <scroll-view class="pet-scroll" scroll-x enable-flex>
       <view class="pet-row">
-        <view class="home-pet card" wx:for="{{basePets}}" wx:key="id" data-type="{{item.type}}" data-scope="base" data-title="基地{{item.type}}" bindtap="goAdoptList" hover-class="tap-card-active">
+        <view class="home-pet card" wx:for="{{basePets}}" wx:key="id" data-id="{{item.id || item._id}}" bindtap="goAdoptDetail" hover-class="tap-card-active">
           <image class="home-pet-img" src="{{item.cover}}" mode="aspectFill"></image>
           <view class="home-pet-body">
             <view class="home-pet-line">
               <text class="home-pet-name">{{item.name}}</text>
+            </view>
+            <view class="home-pet-tags">
               <text class="pill">{{item.type}}</text>
               <text class="pill base-pill">基地</text>
             </view>
@@ -72,14 +80,31 @@
   <view class="section">
     <view class="section-head">
       <text class="section-title">本周遛狗</text>
-      <text class="link" bindtap="goWalk">立即预约</text>
-    </view>
-    <view class="walk-preview card" wx:if="{{firstDog.id}}" data-id="{{firstDog.id}}" bindtap="goWalkDog" hover-class="tap-card-active">
-      <image class="walk-preview-img" src="{{firstDog.cover}}" mode="aspectFill"></image>
-      <view class="walk-preview-body">
-        <text class="walk-preview-title">{{firstDog.name}} 等你散步</text>
-        <text class="walk-preview-desc">{{firstDog.temperament}}，{{firstDog.note}}</text>
+      <view class="link section-action section-action-walk" bindtap="goWalk" hover-class="section-action-active">
+        <text>立即预约</text><text class="section-action-arrow">→</text>
       </view>
     </view>
+    <swiper
+      wx:if="{{walkDogs.length}}"
+      class="walk-swiper"
+      autoplay="{{true}}"
+      interval="3600"
+      duration="500"
+      circular="{{walkDogs.length > 1}}"
+      indicator-dots="{{walkDogs.length > 1}}"
+      indicator-color="rgba(8, 126, 114, 0.25)"
+      indicator-active-color="#087e72"
+    >
+      <swiper-item wx:for="{{walkDogs}}" wx:key="id">
+        <view class="walk-preview card" data-id="{{item.id}}" bindtap="goWalkDog" hover-class="tap-card-active">
+          <image class="walk-preview-img" src="{{item.cover}}" mode="aspectFill"></image>
+          <view class="walk-preview-body">
+            <text class="walk-preview-title">{{item.name}} 等你散步</text>
+            <text class="walk-preview-desc">{{item.temperament}}，{{item.note}}</text>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+    <view wx:else class="empty">暂无可预约遛狗的小狗</view>
   </view>
 </view>

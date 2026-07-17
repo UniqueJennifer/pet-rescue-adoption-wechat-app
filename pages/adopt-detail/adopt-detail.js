@@ -14,7 +14,15 @@ Page({
       return
     }
     const images = pet.images && pet.images.length ? pet.images : [pet.cover].filter(Boolean)
-    this.setData({ pet, images })
+    const detailPet = {
+      ...pet,
+      healthStatusDisplay: pet.healthStatus || pet.recovered || '未填写',
+      sourceDisplay: pet.isBase ? 'TAPA 基地' : '个人救助 / 家庭送养',
+      baseLocationDisplay: pet.baseLocationLabel || [pet.baseSite, pet.baseArea, pet.baseNumber].filter(Boolean).join(' · '),
+      locationDisplay: pet.locationInfo || pet.livingInfo || '未填写',
+      canWalkDisplay: pet.type === '狗狗' && pet.isBase ? (pet.canWalk ? '可以预约遛狗' : '暂不可预约遛狗') : ''
+    }
+    this.setData({ pet: detailPet, images })
   },
   previewImage(event) {
     const url = event.currentTarget.dataset.url

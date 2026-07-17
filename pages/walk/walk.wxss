@@ -32,12 +32,13 @@
 }
 
 .dog-card {
+  position: relative;
   flex: 0 0 310rpx;
   width: 310rpx;
   overflow: hidden;
   display: inline-block;
   margin-right: 20rpx;
-  border: 3rpx solid #24342f;
+  border: 4rpx solid #24342f;
   border-radius: 22rpx;
   background: #fffdf6;
   vertical-align: top;
@@ -45,8 +46,25 @@
 }
 
 .dog-card.active {
-  background: #e8f3df;
+  background: #dff4ee;
   border-color: #087e72;
+  transform: translateY(-8rpx) scale(1.02);
+  box-shadow: 0 0 0 8rpx rgba(8, 126, 114, 0.16), 10rpx 14rpx 0 rgba(36, 52, 47, 0.2);
+}
+
+.selected-dog-badge {
+  position: absolute;
+  z-index: 2;
+  top: 12rpx;
+  right: 12rpx;
+  padding: 8rpx 14rpx;
+  border: 3rpx solid #ffffff;
+  border-radius: 999rpx;
+  background: #087e72;
+  color: #ffffff;
+  font-size: 22rpx;
+  font-weight: 900;
+  box-shadow: 3rpx 3rpx 0 rgba(36, 52, 47, 0.28);
 }
 
 .dog-img {

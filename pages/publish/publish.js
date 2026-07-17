@@ -31,6 +31,7 @@ const initialForm = {
   gender: '母',
   healthStatus: '无疾病',
   diseaseInfo: '',
+  injuryInfo: '',
   vaccinated: '已接种',
   locationInfo: '',
   location: '',
@@ -42,7 +43,7 @@ Page({
   data: {
     typeOptions: ['猫咪', '狗狗'],
     genderOptions: ['母', '公', '未知'],
-    healthStatusOptions: ['无疾病', '治疗中', '生病中', '未知'],
+    healthStatusOptions: ['无疾病', '治疗中', '生病中', '受伤/伤残', '未知'],
     vaccinatedOptions: ['已接种', '未接种', '未完整接种', '不确定'],
     dogBaseOptions,
     catDormOptions,
@@ -55,6 +56,7 @@ Page({
     genderIndex: 0,
     healthStatusIndex: 0,
     vaccinatedIndex: 0,
+    isSelectingImage: false,
     form: JSON.parse(JSON.stringify(initialForm))
   },
   chooseImage() {
@@ -63,21 +65,60 @@ Page({
       wx.showToast({ title: '最多上传9张照片', icon: 'none' })
       return
     }
-    wx.chooseMedia({
-      count: restCount,
-      mediaType: ['image'],
-      sourceType: ['album', 'camera'],
+    if (this.data.isSelectingImage) return
+
+    wx.showActionSheet({
+      itemList: ['从相册选择', '拍照'],
+      success: function(res) {
+        this.openImagePicker(res.tapIndex === 1 ? 'camera' : 'album', restCount)
+      }.bind(this),
+      fail: function(error) {
+        if (!this.isUserCancel(error)) {
+          wx.showToast({ title: '照片选择器打开失败，请重试', icon: 'none' })
+        }
+      }.bind(this)
+    })
+  },
+  openImagePicker(sourceType, count) {
+    this.setData({ isSelectingImage: true })
+
+    wx.chooseImage({
+      count,
+      sourceType: [sourceType],
       sizeType: ['original', 'compressed'],
       success: function(res) {
-        const nextImages = this.data.form.images.concat(res.tempFiles.map(function(file) {
-          return file.tempFilePath
-        })).slice(0, 9)
+        const selectedPaths = Array.isArray(res.tempFilePaths) ? res.tempFilePaths : []
+        const nextImages = this.data.form.images.concat(selectedPaths).slice(0, 9)
         this.setData({
           'form.images': nextImages,
           'form.cover': this.data.form.cover || nextImages[0] || ''
         })
+      }.bind(this),
+      fail: function(error) {
+        if (this.isUserCancel(error)) return
+
+        const message = String(error && error.errMsg || '')
+        if (sourceType === 'camera' && /auth deny|auth denied|authorize/i.test(message)) {
+          wx.showModal({
+            title: '需要相机权限',
+            content: '请在设置中允许使用相机，然后重新点击“添加照片”。',
+            confirmText: '去设置',
+            success: function(result) {
+              if (result.confirm) wx.openSetting()
+            }
+          })
+          return
+        }
+
+        wx.showToast({ title: '无法读取照片，请重试', icon: 'none' })
+      }.bind(this),
+      complete: function() {
+        this.setData({ isSelectingImage: false })
       }.bind(this)
     })
+  },
+  isUserCancel(error) {
+    return /cancel/i.test(String(error && error.errMsg || ''))
   },
   previewImage(event) {
     const url = event.currentTarget.dataset.url
@@ -226,10 +267,13 @@ Page({
   onHealthStatusChange(event) {
     const healthStatusIndex = event.detail.index
     const healthStatus = this.data.healthStatusOptions[healthStatusIndex]
-    this.setData({
+    const nextData = {
       healthStatusIndex,
       'form.healthStatus': healthStatus
-    })
+    }
+    if (healthStatus !== '受伤/伤残') nextData['form.injuryInfo'] = ''
+    if (healthStatus !== '治疗中' && healthStatus !== '生病中') nextData['form.diseaseInfo'] = ''
+    this.setData(nextData)
   },
   chooseLocation() {
     wx.chooseLocation({
@@ -293,7 +337,7 @@ Page({
       }
       wx.showToast({ title: '发布成功', icon: 'success' })
       setTimeout(function() {
-        wx.switchTab({ url: '/pages/adopt/adopt' })
+        wx.switchTab({ url: '/pages/home/home' })
       }, 500)
     } catch (error) {
       wx.hideLoading()

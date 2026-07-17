@@ -144,8 +144,10 @@ const defaultShelterDogs = [
   }
 ]
 
-const WALK_LOCATION = '导航天津小动保基地'
+const WALK_LOCATION = '天津市北辰区牛场路20号'
 const SHELTER_PHONE = '15022278701'
+// 基地完整地址统一放在 WALK_LOCATION 中，首页会直接读取并展示。
+const SHELTER_ADDRESS = WALK_LOCATION
 const timeSlots = ['13点', '14点', '15点', '16点', '17点']
 
 function padNumber(value) {
@@ -521,6 +523,10 @@ function getWalkLocation() {
   return WALK_LOCATION
 }
 
+function getShelterAddress() {
+  return SHELTER_ADDRESS
+}
+
 function getShelterPhone() {
   return SHELTER_PHONE
 }
@@ -536,6 +542,7 @@ module.exports = {
   getAdoptionsForUser,
   getBookings,
   getBookingsForUser,
+  getShelterAddress,
   getShelterPhone,
   getShelterDogs,
   getTimeSlots,

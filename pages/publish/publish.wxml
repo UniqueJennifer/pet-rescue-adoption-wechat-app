@@ -19,10 +19,18 @@
           <button class="photo-remove" data-index="{{index}}" bindtap="removeImage">×</button>
           <button class="photo-crop-btn" data-url="{{item}}" bindtap="cropCover">裁剪封面</button>
         </view>
-        <view wx:if="{{form.images.length < 9}}" class="photo-picker" bindtap="chooseImage">
+        <button
+          wx:if="{{form.images.length < 9}}"
+          class="photo-picker"
+          bindtap="chooseImage"
+          disabled="{{isSelectingImage}}"
+          hover-class="photo-picker-active"
+          aria-role="button"
+          aria-label="添加照片"
+        >
           <text class="photo-plus">+</text>
-          <text class="photo-tip">添加照片</text>
-        </view>
+          <text class="photo-tip">{{isSelectingImage ? '正在打开…' : '添加照片'}}</text>
+        </button>
       </view>
       <view wx:if="{{form.cover}}" class="cover-crop-card">
         <text class="cover-crop-title">领养列表展示裁剪预览</text>
@@ -114,6 +122,11 @@
     <view wx:if="{{form.healthStatus === '治疗中' || form.healthStatus === '生病中'}}" class="field">
       <text class="label">疾病信息</text>
       <textarea class="textarea short-textarea" placeholder-class="placeholder" placeholder="请详细描述宠物的疾病情况、治疗方案等" value="{{form.diseaseInfo}}" data-key="diseaseInfo" bindinput="onInput" maxlength="180"></textarea>
+    </view>
+
+    <view wx:if="{{form.healthStatus === '受伤/伤残'}}" class="field injury-detail-field">
+      <text class="label">具体情况（选填）</text>
+      <textarea class="textarea short-textarea" placeholder-class="placeholder" placeholder="例如受伤部位、伤残程度、恢复情况及日常注意事项" value="{{form.injuryInfo}}" data-key="injuryInfo" bindinput="onInput" maxlength="180"></textarea>
     </view>
 
     <view class="field">

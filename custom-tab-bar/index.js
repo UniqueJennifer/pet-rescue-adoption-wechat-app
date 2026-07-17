@@ -7,10 +7,6 @@ Component({
         text: '首页'
       },
       {
-        pagePath: '/pages/adopt/adopt',
-        text: '领养'
-      },
-      {
         pagePath: '/pages/walk/walk',
         text: '遛狗'
       },

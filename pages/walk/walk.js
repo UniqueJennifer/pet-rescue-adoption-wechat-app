@@ -25,7 +25,7 @@ Page({
     bookings: []
   },
   async onShow() {
-    syncTabBar(this, 2)
+    syncTabBar(this, 1)
     const navigationTarget = wx.getStorageSync('home_walk_target')
     if (navigationTarget) wx.removeStorageSync('home_walk_target')
     const baseDogs = await store.getShelterDogs()

@@ -71,20 +71,21 @@
 .booking-card,
 .adoption-card {
   display: flex;
-  min-height: 172rpx;
+  min-height: 142rpx;
 }
 
 .booking-img,
 .adoption-img {
-  width: 170rpx;
-  min-height: 172rpx;
+  flex: 0 0 142rpx;
+  width: 142rpx;
+  min-height: 142rpx;
   background: #eadfbf;
 }
 
 .booking-body,
 .adoption-body {
   flex: 1;
-  padding: 22rpx;
+  padding: 16rpx 18rpx;
   min-width: 0;
 }
 
@@ -95,24 +96,29 @@
   gap: 16rpx;
 }
 
+.booking-top .pill {
+  flex: 0 0 auto;
+}
+
 .booking-name {
-  overflow: hidden;
+  min-width: 0;
   color: #24342f;
-  font-size: 31rpx;
+  font-size: 29rpx;
+  line-height: 1.3;
   font-weight: 800;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-all;
 }
 
 .booking-time,
 .booking-person {
   display: block;
-  overflow: hidden;
-  margin-top: 12rpx;
+  margin-top: 8rpx;
   color: #6f6a5d;
-  font-size: 25rpx;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-size: 23rpx;
+  line-height: 1.45;
+  white-space: normal;
+  word-break: break-all;
 }
 
 .quick-actions {
@@ -150,13 +156,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 62rpx;
-  margin-top: 16rpx;
+  min-height: 54rpx;
+  margin-top: 12rpx;
   padding: 0 20rpx;
   border: 3rpx solid #24342f;
   border-radius: 18rpx;
   background: #ef705b;
   color: #ffffff;
-  font-size: 24rpx;
+  font-size: 22rpx;
   font-weight: 800;
 }

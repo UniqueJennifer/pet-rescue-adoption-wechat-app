@@ -11,27 +11,6 @@
 
   <view class="section">
     <view class="section-head">
-      <text class="section-title">我的预约</text>
-      <text class="link" bindtap="goWalk">去预约</text>
-    </view>
-    <view wx:if="{{bookings.length}}" class="booking-list">
-      <view class="booking-card card" wx:for="{{bookings}}" wx:key="id">
-        <image class="booking-img" src="{{item.dogCover}}" mode="aspectFill"></image>
-        <view class="booking-body">
-          <view class="booking-top">
-            <text class="booking-name">{{item.dogName}}</text>
-            <text class="pill">{{item.status}}</text>
-          </view>
-          <text class="booking-time">{{item.date}}  {{item.time}}</text>
-          <text class="booking-person">{{item.visitorName}} · {{item.phone}}</text>
-        </view>
-      </view>
-    </view>
-    <view wx:else class="empty">暂无预约记录</view>
-  </view>
-
-  <view class="section">
-    <view class="section-head">
       <text class="section-title">我发布的领养</text>
       <text class="link" bindtap="goPublish">去发布</text>
     </view>
@@ -56,6 +35,28 @@
       </view>
     </view>
     <view wx:else class="empty">暂无发布的领养信息</view>
+  </view>
+
+  <view class="section">
+    <view class="section-head">
+      <text class="section-title">我的预约</text>
+      <text class="link" bindtap="goWalk">去预约</text>
+    </view>
+    <view wx:if="{{bookings.length}}" class="booking-list">
+      <view class="booking-card card" wx:for="{{bookings}}" wx:key="id">
+        <image class="booking-img" src="{{item.dogCover}}" mode="aspectFill"></image>
+        <view class="booking-body">
+          <view class="booking-top">
+            <text class="booking-name">{{item.dogName}}</text>
+            <text class="pill">{{item.status}}</text>
+          </view>
+          <text class="booking-time">{{item.dateLabel || item.date}} · {{item.time}}</text>
+          <text class="booking-person">{{item.location || '基地遛狗预约'}}</text>
+          <text class="booking-person">{{item.visitorName}} · {{item.phone}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="empty">暂无预约记录</view>
   </view>
 
   <view class="section">

@@ -89,6 +89,17 @@
   line-height: 1.5;
 }
 
+.base-location-value,
+.walk-status-value {
+  color: #087e72;
+  font-weight: 900;
+}
+
+.injury-value {
+  color: #b44b3a;
+  font-weight: 800;
+}
+
 .detail-intro {
   display: block;
   color: #466f4d;
