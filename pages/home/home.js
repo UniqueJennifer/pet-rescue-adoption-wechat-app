@@ -38,8 +38,11 @@ Page({
     const otherPets = adoptions.filter(function(item) {
       return item.isBase !== true
     })
+    const availableAdoptions = adoptions.filter(function(item) {
+      return !item.status || item.status === '待领养'
+    })
     this.setData({
-      adoptionCount: adoptions.length,
+      adoptionCount: availableAdoptions.length,
       dogCount: dogs.length + walkableDogs.length,
       bookingCount: userBookings.length,
       approvedCount: approvedCount,
@@ -48,13 +51,28 @@ Page({
       firstDog: dogs[0] || {}
     })
   },
-  goAdopt() {
+  goAdoptList(event) {
+    const dataset = event.currentTarget.dataset || {}
+    wx.setStorageSync('home_adopt_filter', {
+      type: dataset.type || '全部',
+      scope: dataset.scope || 'all',
+      title: dataset.title || '全部待领养'
+    })
     wx.switchTab({ url: '/pages/adopt/adopt' })
   },
   goPublish() {
     wx.navigateTo({ url: '/pages/publish/publish' })
   },
   goWalk() {
+    wx.switchTab({ url: '/pages/walk/walk' })
+  },
+  goWalkDog(event) {
+    const id = event.currentTarget.dataset.id
+    if (id) wx.setStorageSync('home_walk_target', { dogId: id })
+    wx.switchTab({ url: '/pages/walk/walk' })
+  },
+  goBookings() {
+    wx.setStorageSync('home_walk_target', { showBookings: true })
     wx.switchTab({ url: '/pages/walk/walk' })
   }
 })

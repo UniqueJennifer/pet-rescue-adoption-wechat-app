@@ -26,6 +26,8 @@ Page({
   },
   async onShow() {
     syncTabBar(this, 2)
+    const navigationTarget = wx.getStorageSync('home_walk_target')
+    if (navigationTarget) wx.removeStorageSync('home_walk_target')
     const baseDogs = await store.getShelterDogs()
     const adoptions = await store.getAdoptions()
     const walkableBaseDogs = adoptions.filter(function(item) {
@@ -63,10 +65,16 @@ Page({
       times: store.getTimeSlots(),
       location: store.getWalkLocation(),
       shelterPhone: store.getShelterPhone(),
-      selectedDogId: this.data.selectedDogId || (dogs[0] && dogs[0].id) || '',
+      selectedDogId: (navigationTarget && navigationTarget.dogId) || this.data.selectedDogId || (dogs[0] && dogs[0].id) || '',
       visitorName: this.data.visitorName || (user && user.nickname) || '',
       phone: this.data.phone || (user && user.phone) || '',
       bookings
+    }, function() {
+      if (navigationTarget && navigationTarget.showBookings) {
+        wx.nextTick(function() {
+          wx.pageScrollTo({ selector: '#booking-section', duration: 240 })
+        })
+      }
     })
   },
   getMonthOptions(dates) {

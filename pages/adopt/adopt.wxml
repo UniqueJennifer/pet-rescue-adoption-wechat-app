@@ -2,7 +2,7 @@
   <view class="adopt-head">
     <view>
       <text class="page-title">猫狗领养</text>
-      <text class="page-subtitle">浏览待领养的小猫小狗，也可以发布身边需要找家的动物信息。</text>
+      <text class="page-subtitle">{{showList ? '已按首页选择条件展示全部匹配项目。' : '浏览待领养的小猫小狗，也可以发布身边需要找家的动物信息。'}}</text>
     </view>
     <button class="publish-mini" bindtap="goPublish">发布</button>
   </view>
@@ -34,7 +34,7 @@
     </view>
 
     <view class="pet-list" wx:if="{{pets.length}}">
-      <view class="pet-card card" wx:for="{{pets}}" wx:key="id" data-id="{{item.id || item._id}}" bindtap="goDetail">
+      <view class="pet-card card" wx:for="{{pets}}" wx:key="id" data-id="{{item.id || item._id}}" bindtap="goDetail" hover-class="tap-card-active">
         <image class="pet-img" src="{{item.cover}}" mode="aspectFill"></image>
         <view class="pet-body">
           <view class="pet-name-row">

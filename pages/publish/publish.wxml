@@ -13,15 +13,6 @@
           <text class="checkbox-label">基地</text>
         </view>
       </view>
-      <view wx:if="{{form.isBase}}" class="field">
-        <text class="label">是否可遛狗</text>
-        <view class="checkbox-item inline {{form.canWalk ? 'checked' : ''}}" bindtap="toggleCanWalk">
-          <view class="checkbox">
-            <text wx:if="{{form.canWalk}}">✓</text>
-          </view>
-          <text class="checkbox-label">可遛狗</text>
-        </view>
-      </view>
       <view class="photo-grid">
         <view class="photo-item" wx:for="{{form.images}}" wx:key="*this">
           <image class="photo-preview" src="{{item}}" mode="aspectFill" data-url="{{item}}" bindtap="previewImage"></image>
@@ -58,6 +49,49 @@
       <view class="field">
         <text class="label">公母</text>
         <custom-dropdown options="{{genderOptions}}" selected-index="{{genderIndex}}" bind:change="onGenderChange" />
+      </view>
+    </view>
+
+    <view wx:if="{{form.isBase}}" class="base-location-panel">
+      <view class="base-location-head">
+        <view>
+          <text class="base-location-title">基地位置</text>
+          <text class="base-location-tip">请为基地动物选择准确的住宿位置</text>
+        </view>
+        <text class="base-location-badge">{{form.type}}</text>
+      </view>
+
+      <view wx:if="{{form.type === '狗狗'}}" class="base-picker-field">
+        <text class="base-picker-label">基地</text>
+        <custom-dropdown options="{{dogBaseOptions}}" selected-index="{{baseSiteIndex}}" bind:change="onBaseSiteChange" />
+      </view>
+
+      <view class="base-picker-grid">
+        <view class="base-picker-field">
+          <text class="base-picker-label">{{form.type === '狗狗' ? (form.baseSite === '新基地' ? '排数' : '笼区') : '宿舍'}}</text>
+          <custom-dropdown options="{{baseAreaOptions}}" selected-index="{{baseAreaIndex}}" bind:change="onBaseAreaChange" />
+        </view>
+        <view class="base-picker-field">
+          <text class="base-picker-label">编号</text>
+          <picker class="base-picker" mode="selector" range="{{baseNumberOptions}}" value="{{baseNumberIndex}}" bindchange="onBaseNumberChange">
+            <view class="base-picker-value">{{baseNumberOptions[baseNumberIndex]}} <text>⌄</text></view>
+          </picker>
+        </view>
+      </view>
+
+      <view class="base-location-result">
+        <text class="base-location-result-label">已选择</text>
+        <text class="base-location-result-value">{{form.baseLocationLabel}}</text>
+      </view>
+
+      <view wx:if="{{form.type === '狗狗'}}" class="walk-option">
+        <text class="label">是否可遛狗</text>
+        <view class="checkbox-item inline {{form.canWalk ? 'checked' : ''}}" bindtap="toggleCanWalk">
+          <view class="checkbox">
+            <text wx:if="{{form.canWalk}}">✓</text>
+          </view>
+          <text class="checkbox-label">可遛狗</text>
+        </view>
       </view>
     </view>
 

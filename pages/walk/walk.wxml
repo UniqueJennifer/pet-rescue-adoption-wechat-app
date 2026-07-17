@@ -14,7 +14,7 @@
     </view>
     <scroll-view class="dog-scroll" scroll-x enable-flex>
       <view class="dog-row">
-        <view class="dog-card {{selectedDogId === item.id ? 'active' : ''}}" wx:for="{{dogs}}" wx:key="id" data-id="{{item.id}}" bindtap="selectDog">
+        <view class="dog-card {{selectedDogId === item.id ? 'active' : ''}}" wx:for="{{dogs}}" wx:key="id" data-id="{{item.id}}" bindtap="selectDog" hover-class="tap-card-active">
           <image class="dog-img" src="{{item.cover}}" mode="aspectFill"></image>
           <view class="dog-body">
             <text class="dog-name">{{item.name}}</text>
@@ -63,7 +63,7 @@
     <button class="primary-btn" bindtap="submit">提交预约</button>
   </view>
 
-  <view class="section">
+  <view class="section" id="booking-section">
     <view class="section-head">
       <text class="section-title">预约记录</text>
     </view>

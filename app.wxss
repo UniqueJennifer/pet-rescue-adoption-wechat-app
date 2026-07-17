@@ -87,6 +87,12 @@ button::after {
   box-shadow: 8rpx 8rpx 0 rgba(36, 52, 47, 0.16);
 }
 
+.tap-card-active {
+  opacity: 0.86;
+  transform: translateY(3rpx) scale(0.99);
+  box-shadow: 2rpx 2rpx 0 rgba(36, 52, 47, 0.12);
+}
+
 .primary-btn,
 .secondary-btn,
 .ghost-btn {

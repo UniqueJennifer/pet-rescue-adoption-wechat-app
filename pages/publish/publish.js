@@ -1,10 +1,29 @@
 const store = require('../../utils/store')
 
+function createNumberOptions(max) {
+  return Array.from({ length: max }, function(_, index) {
+    return `${index + 1}号`
+  })
+}
+
+const dogBaseOptions = ['新基地', '旧基地']
+const newBaseAreaOptions = ['天字笼', '地字笼']
+const oldBaseRowOptions = Array.from({ length: 10 }, function(_, index) {
+  return `第${['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'][index]}排`
+})
+const catDormOptions = ['猫猫宿舍一', '猫猫宿舍二', '猫猫宿舍三']
+const number30Options = createNumberOptions(30)
+const number50Options = createNumberOptions(50)
+
 const initialForm = {
   cover: '',
   images: [],
   isBase: false,
   canWalk: false,
+  baseSite: '',
+  baseArea: '',
+  baseNumber: '',
+  baseLocationLabel: '',
   name: '',
   type: '猫咪',
   breed: '',
@@ -25,6 +44,13 @@ Page({
     genderOptions: ['母', '公', '未知'],
     healthStatusOptions: ['无疾病', '治疗中', '生病中', '未知'],
     vaccinatedOptions: ['已接种', '未接种', '未完整接种', '不确定'],
+    dogBaseOptions,
+    catDormOptions,
+    baseAreaOptions: catDormOptions,
+    baseNumberOptions: number30Options,
+    baseSiteIndex: 0,
+    baseAreaIndex: 0,
+    baseNumberIndex: 0,
     typeIndex: 0,
     genderIndex: 0,
     healthStatusIndex: 0,
@@ -77,9 +103,36 @@ Page({
     })
   },
   toggleBase() {
+    const isBase = !this.data.form.isBase
+    const type = this.data.form.type
+    if (!isBase) {
+      this.setData({
+        'form.isBase': false,
+        'form.canWalk': false,
+        'form.baseSite': '',
+        'form.baseArea': '',
+        'form.baseNumber': '',
+        'form.baseLocationLabel': ''
+      })
+      return
+    }
+    const isDog = type === '狗狗'
+    const baseSite = isDog ? dogBaseOptions[0] : '猫猫宿舍'
+    const baseAreaOptions = isDog ? oldBaseRowOptions : catDormOptions
+    const baseArea = baseAreaOptions[0]
+    const baseNumber = number30Options[0]
     this.setData({
-      'form.isBase': !this.data.form.isBase,
-      'form.canWalk': false
+      'form.isBase': true,
+      'form.canWalk': false,
+      'form.baseSite': baseSite,
+      'form.baseArea': baseArea,
+      'form.baseNumber': baseNumber,
+      'form.baseLocationLabel': `${baseSite} · ${baseArea} · ${baseNumber}`,
+      baseAreaOptions,
+      baseNumberOptions: number30Options,
+      baseSiteIndex: 0,
+      baseAreaIndex: 0,
+      baseNumberIndex: 0
     })
   },
   toggleCanWalk() {
@@ -93,9 +146,74 @@ Page({
   },
   onTypeChange(event) {
     const typeIndex = event.detail.index
-    this.setData({
+    const type = this.data.typeOptions[typeIndex]
+    const nextData = {
       typeIndex,
-      'form.type': this.data.typeOptions[typeIndex]
+      'form.type': type,
+      'form.canWalk': false
+    }
+    if (this.data.form.isBase) {
+      const isDog = type === '狗狗'
+      const baseSite = isDog ? dogBaseOptions[0] : '猫猫宿舍'
+      const baseAreaOptions = isDog ? oldBaseRowOptions : catDormOptions
+      const baseArea = baseAreaOptions[0]
+      const baseNumber = number30Options[0]
+      Object.assign(nextData, {
+        'form.baseSite': baseSite,
+        'form.baseArea': baseArea,
+        'form.baseNumber': baseNumber,
+        'form.baseLocationLabel': `${baseSite} · ${baseArea} · ${baseNumber}`,
+        baseAreaOptions,
+        baseNumberOptions: number30Options,
+        baseSiteIndex: 0,
+        baseAreaIndex: 0,
+        baseNumberIndex: 0
+      })
+    }
+    this.setData({
+      ...nextData
+    })
+  },
+  onBaseSiteChange(event) {
+    const baseSiteIndex = Number(event.detail.index)
+    const baseSite = dogBaseOptions[baseSiteIndex]
+    const isNewBase = baseSite === '新基地'
+    const baseAreaOptions = isNewBase ? oldBaseRowOptions : newBaseAreaOptions
+    const baseNumberOptions = isNewBase ? number30Options : number50Options
+    const baseArea = baseAreaOptions[0]
+    const baseNumber = baseNumberOptions[0]
+    this.setData({
+      baseSiteIndex,
+      baseAreaIndex: 0,
+      baseNumberIndex: 0,
+      baseAreaOptions,
+      baseNumberOptions,
+      'form.baseSite': baseSite,
+      'form.baseArea': baseArea,
+      'form.baseNumber': baseNumber,
+      'form.baseLocationLabel': `${baseSite} · ${baseArea} · ${baseNumber}`
+    })
+  },
+  onBaseAreaChange(event) {
+    const baseAreaIndex = Number(event.detail.index)
+    const baseArea = this.data.baseAreaOptions[baseAreaIndex]
+    const baseSite = this.data.form.baseSite
+    const baseNumber = this.data.form.baseNumber
+    this.setData({
+      baseAreaIndex,
+      'form.baseArea': baseArea,
+      'form.baseLocationLabel': `${baseSite} · ${baseArea} · ${baseNumber}`
+    })
+  },
+  onBaseNumberChange(event) {
+    const baseNumberIndex = Number(event.detail.value)
+    const baseNumber = this.data.baseNumberOptions[baseNumberIndex]
+    const baseSite = this.data.form.baseSite
+    const baseArea = this.data.form.baseArea
+    this.setData({
+      baseNumberIndex,
+      'form.baseNumber': baseNumber,
+      'form.baseLocationLabel': `${baseSite} · ${baseArea} · ${baseNumber}`
     })
   },
   onGenderChange(event) {
