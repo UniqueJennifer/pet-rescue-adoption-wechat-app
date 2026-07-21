@@ -132,6 +132,11 @@
       <input class="input" type="text" placeholder-class="placeholder" placeholder="手机号、微信号、邮箱或其他联系方式" value="{{form.contact}}" data-key="contact" bindinput="onInput" />
     </view>
 
+    <view class="agreement-row" bindtap="toggleAgreement">
+      <text class="agreement-checkbox">{{agreed ? '✓' : ''}}</text>
+      <text class="agreement-text">我已阅读并同意<text class="agreement-link" catchtap="openAgreement">《用户服务协议》</text>和<text class="agreement-link" catchtap="openPrivacy">《隐私政策》</text>，同意小程序收集并展示我填写的领养信息和联系方式。</text>
+    </view>
+
     <button class="primary-btn submit-btn" bindtap="submit">提交发布</button>
   </view>
 </view>

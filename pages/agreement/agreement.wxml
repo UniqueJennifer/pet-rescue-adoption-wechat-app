@@ -1,0 +1,26 @@
+<view class="page policy-page">
+  <text class="page-title">用户服务协议</text>
+  <text class="page-subtitle">欢迎使用天津小动保TAPA猫狗领养与遛狗预约小程序。</text>
+
+  <view class="policy-card">
+    <text class="policy-title">服务内容</text>
+    <text class="policy-text">本小程序提供待领养猫狗信息浏览、用户发布领养信息、救助站小狗遛狗预约、预约记录查看等服务。</text>
+  </view>
+
+  <view class="policy-card">
+    <text class="policy-title">用户责任</text>
+    <text class="policy-text">用户应提交真实、准确、合法的信息，不得发布虚假、违法、侵权、广告营销或与领养救助无关的内容。</text>
+    <text class="policy-text">用户通过本小程序获取联系方式后，应仅用于领养沟通或预约确认，不得骚扰他人或用于其他无关目的。</text>
+  </view>
+
+  <view class="policy-card">
+    <text class="policy-title">预约说明</text>
+    <text class="policy-text">遛狗预约需提前一天提交。预约提交后，救助站工作人员可能通过用户填写的手机号联系确认。</text>
+    <text class="policy-text">如现场情况、天气、动物健康状态不适合遛狗，救助站可调整或取消预约。</text>
+  </view>
+
+  <view class="policy-card">
+    <text class="policy-title">协议更新</text>
+    <text class="policy-text">小程序可能根据运营、审核或法律法规要求更新本协议。继续使用服务视为接受更新后的协议。</text>
+  </view>
+</view>

@@ -1,0 +1,30 @@
+<view class="page policy-page">
+  <text class="page-title">隐私政策</text>
+  <text class="page-subtitle">本政策说明天津小动保TAPA如何收集、使用和保存用户信息。</text>
+
+  <view class="policy-card">
+    <text class="policy-title">我们收集的信息</text>
+    <text class="policy-text">手机号：用于账号注册登录、遛狗预约确认、救助站必要联系。</text>
+    <text class="policy-text">微信 openid、昵称、头像：用于识别账号、展示发布者信息、管理用户发布和预约记录。</text>
+    <text class="policy-text">领养发布信息：包括动物照片、名称、品种、年龄、公母、健康状况、疫苗情况、情况简介和联系方式，用于待领养信息展示和领养沟通。</text>
+    <text class="policy-text">预约信息：包括预约小狗、日期、时间、预约人姓名、手机号，用于预约确认、现场核验和记录查询。</text>
+  </view>
+
+  <view class="policy-card">
+    <text class="policy-title">使用方式和用途</text>
+    <text class="policy-text">手机号不会在公开列表中展示，仅用于登录识别、预约确认和必要联系。</text>
+    <text class="policy-text">领养联系方式仅用于领养沟通，其他用户应在合理范围内使用。</text>
+    <text class="policy-text">照片和动物信息用于领养展示，请勿上传违法违规、侵权或与救助领养无关的内容。</text>
+  </view>
+
+  <view class="policy-card">
+    <text class="policy-title">存储和保护</text>
+    <text class="policy-text">用户信息会存储在微信小程序本地缓存及微信云开发数据库中，用于小程序功能运行。</text>
+    <text class="policy-text">我们会在合理范围内保护用户信息，不会主动将手机号提供给无关第三方。</text>
+  </view>
+
+  <view class="policy-card">
+    <text class="policy-title">管理和删除</text>
+    <text class="policy-text">用户可在“我的”页面管理自己发布的领养信息。如需删除预约记录或处理隐私问题，可联系天津小动保TAPA工作人员。</text>
+  </view>
+</view>

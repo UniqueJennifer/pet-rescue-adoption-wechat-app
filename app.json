@@ -7,7 +7,9 @@
     "pages/cover-crop/cover-crop",
     "pages/walk/walk",
     "pages/profile/profile",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/agreement/agreement",
+    "pages/privacy/privacy"
   ],
   "window": {
     "navigationBarTitleText": "天津小动保TAPA",

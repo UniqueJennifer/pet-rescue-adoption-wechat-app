@@ -55,6 +55,7 @@ Page({
     genderIndex: 0,
     healthStatusIndex: 0,
     vaccinatedIndex: 0,
+    agreed: false,
     form: JSON.parse(JSON.stringify(initialForm))
   },
   chooseImage() {
@@ -143,6 +144,15 @@ Page({
   onInput(event) {
     const key = event.currentTarget.dataset.key
     this.setData({ ['form.' + key]: event.detail.value })
+  },
+  toggleAgreement() {
+    this.setData({ agreed: !this.data.agreed })
+  },
+  openAgreement() {
+    wx.navigateTo({ url: '/pages/agreement/agreement' })
+  },
+  openPrivacy() {
+    wx.navigateTo({ url: '/pages/privacy/privacy' })
   },
   onTypeChange(event) {
     const typeIndex = event.detail.index
@@ -271,6 +281,10 @@ Page({
     })
     if (missed) {
       wx.showToast({ title: '请补全必填信息', icon: 'none' })
+      return
+    }
+    if (!this.data.agreed) {
+      wx.showToast({ title: '请先阅读并同意协议', icon: 'none' })
       return
     }
     wx.showLoading({ title: '发布中' })

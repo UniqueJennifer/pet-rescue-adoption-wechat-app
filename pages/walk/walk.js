@@ -22,7 +22,8 @@ Page({
     timeIndex: 0,
     visitorName: '',
     phone: '',
-    bookings: []
+    bookings: [],
+    agreed: false
   },
   async onShow() {
     syncTabBar(this, 2)
@@ -37,8 +38,11 @@ Page({
         id: item.id || item._id,
         name: item.name,
         size: item.breed || '未知品种',
-        temperament: item.healthStatus || '健康',
-        note: '基地待领养狗狗',
+        temperament: item.healthStatus || '健康状态未知',
+        age: item.age || '年龄未知',
+        gender: item.gender || '未知',
+        health: item.healthStatus || '',
+        note: item.baseLocationLabel || item.intro || '基地待领养狗狗',
         cover: item.cover
       }
     })
@@ -142,6 +146,21 @@ Page({
   onPhoneInput(event) {
     this.setData({ phone: event.detail.value })
   },
+  callShelter() {
+    if (!this.data.shelterPhone) return
+    wx.makePhoneCall({
+      phoneNumber: this.data.shelterPhone
+    })
+  },
+  toggleAgreement() {
+    this.setData({ agreed: !this.data.agreed })
+  },
+  openAgreement() {
+    wx.navigateTo({ url: '/pages/agreement/agreement' })
+  },
+  openPrivacy() {
+    wx.navigateTo({ url: '/pages/privacy/privacy' })
+  },
   async submit() {
     const selectedDogId = this.data.selectedDogId
     const dates = this.data.dates
@@ -172,6 +191,10 @@ Page({
     }
     if (!/^1\d{10}$/.test(phone)) {
       wx.showToast({ title: '请输入正确手机号', icon: 'none' })
+      return
+    }
+    if (!this.data.agreed) {
+      wx.showToast({ title: '请先阅读并同意协议', icon: 'none' })
       return
     }
     const selectedDate = dates[dateIndex]

@@ -13,7 +13,7 @@ Page({
     bookingCount: 0,
     featuredPets: [],
     basePets: [],
-    firstDog: {}
+    walkDogs: []
   },
   async onShow() {
     syncTabBar(this, 0)
@@ -25,6 +25,18 @@ Page({
     ])
     const walkableDogs = adoptions.filter(function(item) {
       return item.isBase === true && item.canWalk === true && item.type === '狗狗'
+    }).map(function(item) {
+      return {
+        id: item.id || item._id,
+        name: item.name,
+        size: item.breed || '未知品种',
+        temperament: item.healthStatus || '健康状态未知',
+        age: item.age || '年龄未知',
+        gender: item.gender || '未知',
+        health: item.healthStatus || '',
+        note: item.baseLocationLabel || item.intro || '基地待领养狗狗',
+        cover: item.cover
+      }
     })
     const userBookings = user ? bookings.filter(function(booking) {
       return booking.userId === user.id
@@ -41,14 +53,15 @@ Page({
     const availableAdoptions = adoptions.filter(function(item) {
       return !item.status || item.status === '待领养'
     })
+    const walkDogs = dogs.concat(walkableDogs)
     this.setData({
       adoptionCount: availableAdoptions.length,
-      dogCount: dogs.length + walkableDogs.length,
+      dogCount: walkDogs.length,
       bookingCount: userBookings.length,
       approvedCount: approvedCount,
       featuredPets: otherPets.slice(0, 3),
       basePets: basePets.slice(0, 3),
-      firstDog: dogs[0] || {}
+      walkDogs
     })
   },
   goAdoptList(event) {

@@ -16,14 +16,23 @@
       <view class="dog-row">
         <view class="dog-card {{selectedDogId === item.id ? 'active' : ''}}" wx:for="{{dogs}}" wx:key="id" data-id="{{item.id}}" bindtap="selectDog" hover-class="tap-card-active">
           <image class="dog-img" src="{{item.cover}}" mode="aspectFill"></image>
+          <text wx:if="{{selectedDogId === item.id}}" class="dog-selected">已选择</text>
           <view class="dog-body">
             <text class="dog-name">{{item.name}}</text>
             <text class="dog-meta">{{item.size}} · {{item.temperament}}</text>
+            <text class="dog-meta">{{item.age}} · {{item.gender}}</text>
+            <text class="dog-note">{{item.health}}</text>
             <text class="dog-note">{{item.note}}</text>
           </view>
         </view>
       </view>
     </scroll-view>
+  </view>
+
+  <view class="contact-card section">
+    <text class="contact-title">遛狗联系</text>
+    <text class="contact-text">预约成功后，请提前一天联系基地负责人确认遛狗安排。</text>
+    <text class="contact-phone" bindtap="callShelter">{{shelterPhone}}</text>
   </view>
 
   <view class="form-card section">
@@ -59,6 +68,10 @@
     <view class="field">
       <text class="label">手机号</text>
       <input class="input" type="number" maxlength="11" placeholder-class="placeholder" placeholder="用于TAPA联系确认" value="{{phone}}" bindinput="onPhoneInput" />
+    </view>
+    <view class="agreement-row" bindtap="toggleAgreement">
+      <text class="agreement-checkbox">{{agreed ? '✓' : ''}}</text>
+      <text class="agreement-text">我已阅读并同意<text class="agreement-link" catchtap="openAgreement">《用户服务协议》</text>和<text class="agreement-link" catchtap="openPrivacy">《隐私政策》</text>，同意小程序收集手机号用于遛狗预约确认。</text>
     </view>
     <button class="primary-btn" bindtap="submit">提交预约</button>
   </view>

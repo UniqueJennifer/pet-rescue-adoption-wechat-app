@@ -5,7 +5,8 @@ Page({
     mode: 'phone',
     nickname: '',
     phone: '',
-    avatar: ''
+    avatar: '',
+    agreed: false
   },
   changeMode(event) {
     this.setData({ mode: event.currentTarget.dataset.mode })
@@ -18,6 +19,20 @@ Page({
   },
   onChooseAvatar(event) {
     this.setData({ avatar: event.detail.avatarUrl })
+  },
+  toggleAgreement() {
+    this.setData({ agreed: !this.data.agreed })
+  },
+  openAgreement() {
+    wx.navigateTo({ url: '/pages/agreement/agreement' })
+  },
+  openPrivacy() {
+    wx.navigateTo({ url: '/pages/privacy/privacy' })
+  },
+  ensureAgreement() {
+    if (this.data.agreed) return true
+    wx.showToast({ title: '请先阅读并同意协议', icon: 'none' })
+    return false
   },
   goAfterLogin() {
     const pages = getCurrentPages()
@@ -33,6 +48,8 @@ Page({
     wx.switchTab({ url: '/pages/profile/profile' })
   },
   async loginByPhone() {
+    if (!this.ensureAgreement()) return
+
     const nickname = this.data.nickname
     const phone = this.data.phone
     if (!nickname.trim() || !/^1\d{10}$/.test(phone)) {
@@ -48,6 +65,8 @@ Page({
     }.bind(this), 400)
   },
   async loginByWechat() {
+    if (!this.ensureAgreement()) return
+
     const nickname = this.data.nickname
     const phone = this.data.phone
     const avatar = this.data.avatar

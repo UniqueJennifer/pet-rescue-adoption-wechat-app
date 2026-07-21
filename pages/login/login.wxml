@@ -18,6 +18,10 @@
       <text class="label">手机号</text>
       <input class="input" type="number" maxlength="11" placeholder-class="placeholder" placeholder="请输入手机号" value="{{phone}}" bindinput="onPhoneInput" />
     </view>
+    <view class="agreement-row" bindtap="toggleAgreement">
+      <text class="agreement-checkbox">{{agreed ? '✓' : ''}}</text>
+      <text class="agreement-text">我已阅读并同意<text class="agreement-link" catchtap="openAgreement">《用户服务协议》</text>和<text class="agreement-link" catchtap="openPrivacy">《隐私政策》</text>，同意小程序按政策说明收集和使用手机号。</text>
+    </view>
     <button class="primary-btn" bindtap="loginByPhone">登录 / 注册</button>
   </view>
 
@@ -33,6 +37,10 @@
     <view class="field">
       <text class="label">手机号</text>
       <input class="input" type="number" maxlength="11" placeholder-class="placeholder" placeholder="可选，方便预约确认" value="{{phone}}" bindinput="onPhoneInput" />
+    </view>
+    <view class="agreement-row" bindtap="toggleAgreement">
+      <text class="agreement-checkbox">{{agreed ? '✓' : ''}}</text>
+      <text class="agreement-text">我已阅读并同意<text class="agreement-link" catchtap="openAgreement">《用户服务协议》</text>和<text class="agreement-link" catchtap="openPrivacy">《隐私政策》</text>，同意小程序按政策说明收集和使用账号信息及手机号。</text>
     </view>
     <button class="primary-btn" bindtap="loginByWechat">微信账号登录</button>
   </view>

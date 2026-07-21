@@ -167,34 +167,63 @@
   color: #ffffff;
 }
 
-.walk-preview {
-  display: flex;
-  min-height: 190rpx;
-  align-items: stretch;
+.walk-scroll {
+  width: 100%;
+  white-space: nowrap;
 }
 
-.walk-preview-img {
-  width: 220rpx;
-  min-height: 190rpx;
+.walk-row {
+  display: flex;
+  gap: 20rpx;
+}
+
+.walk-dog {
+  flex: 0 0 330rpx;
+  width: 330rpx;
+  display: inline-block;
+  margin-right: 20rpx;
+  vertical-align: top;
+}
+
+.walk-dog-img {
+  display: block;
+  width: 330rpx;
+  height: 230rpx;
   background: #eadfbf;
 }
 
-.walk-preview-body {
-  flex: 1;
-  padding: 24rpx;
+.walk-dog-body {
+  padding: 20rpx;
 }
 
-.walk-preview-title {
-  display: block;
+.walk-dog-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12rpx;
+}
+
+.walk-dog-name {
+  overflow: hidden;
   color: #24342f;
-  font-size: 32rpx;
+  font-size: 31rpx;
   font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.walk-preview-desc {
+.walk-dog-meta,
+.walk-dog-desc {
   display: block;
-  margin-top: 14rpx;
+  overflow: hidden;
+  margin-top: 10rpx;
   color: #6f6a5d;
-  font-size: 25rpx;
-  line-height: 1.5;
+  font-size: 23rpx;
+  line-height: 1.45;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.walk-dog-desc {
+  color: #466f4d;
 }

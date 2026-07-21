@@ -74,12 +74,20 @@
       <text class="section-title">本周遛狗</text>
       <text class="link" bindtap="goWalk">立即预约</text>
     </view>
-    <view class="walk-preview card" wx:if="{{firstDog.id}}" data-id="{{firstDog.id}}" bindtap="goWalkDog" hover-class="tap-card-active">
-      <image class="walk-preview-img" src="{{firstDog.cover}}" mode="aspectFill"></image>
-      <view class="walk-preview-body">
-        <text class="walk-preview-title">{{firstDog.name}} 等你散步</text>
-        <text class="walk-preview-desc">{{firstDog.temperament}}，{{firstDog.note}}</text>
+    <scroll-view wx:if="{{walkDogs.length > 0}}" class="walk-scroll" scroll-x enable-flex>
+      <view class="walk-row">
+        <view class="walk-dog card" wx:for="{{walkDogs}}" wx:key="id" data-id="{{item.id}}" bindtap="goWalkDog" hover-class="tap-card-active">
+          <image class="walk-dog-img" src="{{item.cover}}" mode="aspectFill"></image>
+          <view class="walk-dog-body">
+            <view class="walk-dog-line">
+              <text class="walk-dog-name">{{item.name}}</text>
+              <text class="pill">可预约</text>
+            </view>
+            <text class="walk-dog-meta">{{item.size}} · {{item.age}} · {{item.gender}}</text>
+            <text class="walk-dog-desc">{{item.temperament}}，{{item.note}}</text>
+          </view>
+        </view>
       </view>
-    </view>
+    </scroll-view>
   </view>
 </view>

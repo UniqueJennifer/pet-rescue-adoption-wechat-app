@@ -119,28 +119,30 @@ const defaultAdoptions = [
 
 const defaultShelterDogs = [
   {
-    id: 'd1',
-    name: '阿福',
+    id: 'demo-dog-1',
+    name: '小满',
     size: '中型犬',
     temperament: '温顺亲人',
-    note: '适合第一次参加遛狗的志愿者',
-    cover: 'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=900&q=80'
+    age: '3岁',
+    gender: '母',
+    health: '已免疫，身体稳定',
+    note: '牵引稳定，适合第一次参加遛狗的志愿者',
+    available: true,
+    sort: 1,
+    cover: 'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=900&q=80'
   },
   {
-    id: 'd2',
-    name: '可乐',
+    id: 'demo-dog-2',
+    name: '豆包',
     size: '小型犬',
     temperament: '活泼好奇',
-    note: '需要牵引绳保持较短距离',
+    age: '1岁半',
+    gender: '公',
+    health: '已驱虫，已接种疫苗',
+    note: '喜欢探索，建议遛狗时保持短牵引',
+    available: true,
+    sort: 2,
     cover: 'https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?auto=format&fit=crop&w=900&q=80'
-  },
-  {
-    id: 'd3',
-    name: '团团',
-    size: '大型犬',
-    temperament: '稳定听话',
-    note: '建议有大型犬经验的志愿者预约',
-    cover: 'https://images.unsplash.com/photo-1561037404-61cd46aa615b?auto=format&fit=crop&w=900&q=80'
   }
 ]
 
@@ -501,7 +503,7 @@ async function getShelterDogs() {
   try {
     const result = await callCloudFunction('dogs', { action: 'list' })
     if (result.ok) {
-      return result.data || []
+      return result.data && result.data.length ? result.data : defaultShelterDogs
     }
   } catch (error) {
     return defaultShelterDogs

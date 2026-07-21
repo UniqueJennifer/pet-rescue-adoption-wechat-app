@@ -192,3 +192,37 @@ button::after {
 .placeholder {
   color: #a19883;
 }
+
+.agreement-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12rpx;
+  margin: 8rpx 0 26rpx;
+  color: #6f6a5d;
+  font-size: 24rpx;
+  line-height: 1.55;
+}
+
+.agreement-checkbox {
+  flex: 0 0 34rpx;
+  width: 34rpx;
+  height: 34rpx;
+  margin-top: 3rpx;
+  border: 3rpx solid #24342f;
+  border-radius: 8rpx;
+  background: #fffdf6;
+  color: #24342f;
+  text-align: center;
+  font-size: 24rpx;
+  font-weight: 900;
+  line-height: 30rpx;
+}
+
+.agreement-text {
+  flex: 1;
+}
+
+.agreement-link {
+  color: #087e72;
+  font-weight: 900;
+}
